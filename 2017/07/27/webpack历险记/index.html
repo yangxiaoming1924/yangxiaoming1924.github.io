@@ -19,7 +19,9 @@
 <meta property="og:image" content="http://i.imgur.com/QgedJVK.png">
 <meta property="og:image" content="http://i.imgur.com/MMzLEZ1.png">
 <meta property="og:image" content="http://i.imgur.com/LSbbhvG.png">
-<meta property="og:updated_time" content="2017-07-27T08:26:46.705Z">
+<meta property="og:image" content="http://i.imgur.com/l59FWa9.png">
+<meta property="og:image" content="http://i.imgur.com/DneKBio.png">
+<meta property="og:updated_time" content="2017-07-28T10:08:17.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack历险记">
 <meta name="twitter:description" content="关于webpack不得不说的那些事儿">
@@ -286,6 +288,27 @@ hello(&quot;hello world&quot;);
 </ol>
 </li>
 </ol>
+<h3 id="处理资源文件"><a href="#处理资源文件" class="headerlink" title="处理资源文件"></a>处理资源文件</h3><h4 id="处理css-less-sass"><a href="#处理css-less-sass" class="headerlink" title="处理css/less/sass"></a>处理css/less/sass</h4><ol>
+<li>配置大致如图所示<img src="http://i.imgur.com/l59FWa9.png" alt="资源文件处理"><ol>
+<li>每个类型的匹配都在rules这个数组对象里<ol>
+<li>test是指正则匹配文件类型</li>
+<li>loader是指明加载器,<code>npm i 加载器名称 --save-dev</code></li>
+<li>exclude是不使用加载器加载的文件<strong>范围</strong>,地址必须要用__dirname</li>
+<li>options是指定编译的版本,比如ES5/ES6/ES7(env指的是最新版本)</li>
+<li>如果是css文件需要自动补全样式前缀,比如-ms/-webkit,就需要require进来<code>postcss-loader</code></li>
+<li>如果是<code>@import的css文件</code>,就需要加载<code>postcss-import</code></li>
+<li><code>postcss-loader</code>的配置<code>plugins</code>里面的<code>autoprefixer</code>,详情请见上图</li>
+<li>如果是less文件,就需要<code>npm i less-loader --save-dev</code></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="处理图片等其他资源"><a href="#处理图片等其他资源" class="headerlink" title="处理图片等其他资源"></a>处理图片等其他资源</h4><ol>
+<li>添加一个loader<code>file-loader</code>即可</li>
+<li>也可以添加一个loader<code>url-loader</code><img src="http://i.imgur.com/DneKBio.png" alt="">图片超过limit限制的20K大小就会转换成base64</li>
+<li>压缩图片的loader是<code>image-webpack-loader</code>,limit也是同样的</li>
+</ol>
 
       
 
@@ -540,15 +563,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
              
               <li class="article-tag-list-item">
