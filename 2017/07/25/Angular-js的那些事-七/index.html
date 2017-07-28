@@ -8,16 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Angular.js的那些事(七) | Scorpion&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="yangxiaoming的个人网站">
+  <meta name="description" content="Angular.js的那些事(七)">
+<meta name="keywords" content="Angular.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular.js的那些事(七)">
 <meta property="og:url" content="http://yoursite.com/2017/07/25/Angular-js的那些事-七/index.html">
 <meta property="og:site_name" content="Scorpion&#39;s Blog">
-<meta property="og:description" content="yangxiaoming的个人网站">
-<meta property="og:updated_time" content="2017-07-25T08:44:26.982Z">
+<meta property="og:description" content="Angular.js的那些事(七)">
+<meta property="og:updated_time" content="2017-07-28T08:19:37.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular.js的那些事(七)">
-<meta name="twitter:description" content="yangxiaoming的个人网站">
+<meta name="twitter:description" content="Angular.js的那些事(七)">
   
     <link rel="alternative" href="/atom.xml" title="Scorpion&#39;s Blog" type="application/atom+xml">
   
@@ -181,7 +182,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>Angular.js的那些事(七)<br><a id="more"></a></p>
+<h1 id="First-Step-http"><a href="#First-Step-http" class="headerlink" title="First Step $http"></a>First Step $http</h1><ol>
+<li>传统的http请求写法：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var xhr = null;</div><div class="line">if (window.ActiveXObject) &#123;</div><div class="line">    xhr = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);//兼容老浏览器</div><div class="line">&#125; else if (window.XMLHttpRequest) &#123;</div><div class="line">    xhr = new XMLHttpRequest();</div><div class="line">&#125;</div><div class="line">xhr.onreadystatechange = function() &#123;</div><div class="line">if (xhr.readyState == 4) &#123;</div><div class="line">    //200 成功</div><div class="line">    //304 请求资源不变</div><div class="line">    //400 404 403  页面的问题</div><div class="line">    //500服务器的问题</div><div class="line">    if (xhr.status == 200) &#123;</div><div class="line">        var res = xhr.responseText;</div><div class="line">        alert(res);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//第三个参数 是否异步</div><div class="line">xhr.open(&quot;post&quot;, &quot;../data/data.json&quot;, true);</div><div class="line">xhr.send();</div></pre></td></tr></table></figure>
+<ol>
+<li>angular里面的http</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">2.1写法</div><div class="line">    001. </div><div class="line">        $http.get|post|put|delete(url,[data],[config]).then(SuccessFunc,ErrorFunc)</div><div class="line">    002.</div><div class="line">        $http(&#123;</div><div class="line">            url:url,    //请求链接</div><div class="line">            method:method,   //请求方式</div><div class="line">            data:&apos;id=1&amp;name=zhangsan&apos;,   // 发送的数据</div><div class="line">            params：&#123;id:1&#125;,  //  地址栏的参数</div><div class="line">            headers:headers, //请求头</div><div class="line">            cache:boolean,   //true则缓存本次请求</div><div class="line">            timeout:timeout //  超时时间 ,毫秒单位</div><div class="line">        &#125;).then()</div><div class="line">    003.传参</div><div class="line">        a:URL传参 /api/userinfo?id=1</div><div class="line">        b:form传参 /post传参&#123;name:&apos;zhangsan&apos;.age:10&#125;</div><div class="line">2.2. 请求类型：</div><div class="line">        001. GET</div><div class="line">        002. POST 可配置data和config</div><div class="line">        003. JSONP</div><div class="line">        004. DELETE</div><div class="line">        005. PUT 可配置data和config</div><div class="line">        006. HEAD</div><div class="line">2.3. header配置：</div><div class="line">        001. $httpProvider.defaults.headers.post = &#123;&apos;Content-Type&apos;:&apos;application/x-www-form-urlencoded&apos;&#125;</div></pre></td></tr></table></figure>
+
       
 
       
@@ -210,7 +220,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Angular.js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Angular.js/" class="article-tag-list-link color1">Angular.js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -406,15 +438,19 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">server</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">server</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Oracle</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -431,10 +467,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Oracle</a>
               </li>
              
               <li class="article-tag-list-item">

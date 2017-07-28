@@ -8,16 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Angular.js的那些事(八) | Scorpion&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="yangxiaoming的个人网站">
+  <meta name="description" content="Angular.js的那些事(八)">
+<meta name="keywords" content="Angular.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular.js的那些事(八)">
 <meta property="og:url" content="http://yoursite.com/2017/07/25/Angular-js的那些事-八/index.html">
 <meta property="og:site_name" content="Scorpion&#39;s Blog">
-<meta property="og:description" content="yangxiaoming的个人网站">
-<meta property="og:updated_time" content="2017-07-25T08:44:33.136Z">
+<meta property="og:description" content="Angular.js的那些事(八)">
+<meta property="og:updated_time" content="2017-07-28T08:23:38.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular.js的那些事(八)">
-<meta name="twitter:description" content="yangxiaoming的个人网站">
+<meta name="twitter:description" content="Angular.js的那些事(八)">
   
     <link rel="alternative" href="/atom.xml" title="Scorpion&#39;s Blog" type="application/atom+xml">
   
@@ -174,14 +175,37 @@
 
         
         <a href="/2017/07/25/Angular-js的那些事-八/" class="archive-article-date">
-  	<time datetime="2017-07-25T08:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-25</time>
+  	<time datetime="2017-07-25T08:44:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>Angular.js的那些事(八)<br><a id="more"></a></p>
+<h1 id="First-Step-缓存cache"><a href="#First-Step-缓存cache" class="headerlink" title="First Step 缓存cache"></a>First Step 缓存cache</h1><ol>
+<li><p>创建缓存</p>
+<pre><code>1.创建缓存实体 $cacheFactory(cacheid,[options])
+2.获取创建的缓存实体 $cacheFactory.get(cacheid)
+</code></pre></li>
+<li><p>缓存的方法</p>
+<pre><code>1. 获取缓存的内容 cacheInfo.get(&apos;cacheName&apos;)
+2. 获取缓存实体的信息 cacheInfo.info()
+3. 创建缓存项 cacheInfo.put(k,v) //v可以存储对象
+4. 移除缓存项 cacheInfo.remove(&apos;cacheName&apos;)
+5. 移除所有的缓存项cacheInfo.removeAll()
+6. 销毁缓存实体 cacheInfo.destroy()
+</code></pre></li>
+<li><p>http服务中的cache（只有get请求中有）21kb</p>
+<pre><code>1. 请求体：cache: boolean/object
+2. [capacity:size]创建请求的时候声明
+ //获取http中的缓存实体
+            var getCache=$cacheFactory.get(&apos;$http&apos;);
+            //获取缓存中的数据
+            var getCacheData=getCache.get(&apos;./api/cache.php&apos;)[1]; 
+</code></pre></li>
+</ol>
+
       
 
       
@@ -210,7 +234,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Angular.js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Angular.js/" class="article-tag-list-link color1">Angular.js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -406,15 +452,19 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">server</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">server</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Oracle</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -431,10 +481,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Oracle</a>
               </li>
              
               <li class="article-tag-list-item">
