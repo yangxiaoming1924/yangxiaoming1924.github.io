@@ -8,16 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Angular.js的那些事(十) | Scorpion&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="yangxiaoming的个人网站">
+  <meta name="description" content="Angular.js的那些事(十)">
+<meta name="keywords" content="Angular.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular.js的那些事(十)">
 <meta property="og:url" content="http://yoursite.com/2017/07/25/Angular-js的那些事-十/index.html">
 <meta property="og:site_name" content="Scorpion&#39;s Blog">
-<meta property="og:description" content="yangxiaoming的个人网站">
-<meta property="og:updated_time" content="2017-07-25T08:44:47.486Z">
+<meta property="og:description" content="Angular.js的那些事(十)">
+<meta property="og:updated_time" content="2017-08-01T07:59:47.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular.js的那些事(十)">
-<meta name="twitter:description" content="yangxiaoming的个人网站">
+<meta name="twitter:description" content="Angular.js的那些事(十)">
   
     <link rel="alternative" href="/atom.xml" title="Scorpion&#39;s Blog" type="application/atom+xml">
   
@@ -181,7 +182,97 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>Angular.js的那些事(十)<br><a id="more"></a></p>
+<h2 id="First-Step-angular-cookies"><a href="#First-Step-angular-cookies" class="headerlink" title="First Step angular-cookies"></a>First Step angular-cookies</h2><ol>
+<li>安装 bower i angular-cookies –save<ol>
+<li>cookies的特点:<ol>
+<li>小文本文件的形式保存在客户端本地的电脑中</li>
+<li>由浏览器进行管理</li>
+<li>大小限制:4K左右</li>
+<li>安全性比较差</li>
+</ol>
+</li>
+<li>应用的场景:<ol>
+<li>记住密码</li>
+<li>浏览商品的历史记录</li>
+<li>皮肤</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>引入angular-cookies.js</li>
+<li><p>$cookiesProvider</p>
+<p>$cookiesProvider.defaults={path,domain,expries,secure}</p>
+<ol>
+<li>path:修改路径以及子路径可以使用cookie</li>
+<li>domain:该域名以及子域名可以使用</li>
+<li>expires:过期时间,日起对象</li>
+<li>secure:true/false.表示该cookie只在安全连接里面使用</li>
+</ol>
+</li>
+<li>$cookies<ol>
+<li>提供浏览器cookies的读写访问操作</li>
+<li>get(k)</li>
+<li>getObject(k)</li>
+<li>getAll()</li>
+<li>put(k,v,[,option])</li>
+<li>putObject(k,v,[,option])</li>
+<li>remove(k)   </li>
+</ol>
+</li>
+<li>$cookieStore:过期时间(浏览器关闭为止)<ol>
+<li>被存入的数据自动转化喂字符串,去除的数据会自动被json化</li>
+<li>get(k)</li>
+<li>put(k,v)</li>
+<li>remove(k)<h2 id="Second-Step-localStorage"><a href="#Second-Step-localStorage" class="headerlink" title="Second Step localStorage"></a>Second Step localStorage</h2></li>
+</ol>
+</li>
+<li>H5的新特性:<ol>
+<li>永久性保存</li>
+<li>由浏览器管理</li>
+<li>大小限制5M</li>
+<li>效率比cookie高</li>
+<li>由JS来控制操作</li>
+</ol>
+</li>
+<li>本地存储</li>
+<li>setItem(k,v)<ol>
+<li>设置:value只能存储字符串和数字<ol>
+<li>JSON.stringify()</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>getItem(k)</li>
+<li>removeItem(k)</li>
+<li>clear()<h2 id="Third-Step-ui-Route"><a href="#Third-Step-ui-Route" class="headerlink" title="Third Step ui-Route"></a>Third Step ui-Route</h2></li>
+<li>安装 bower i angular-ui-router –save</li>
+<li>引入anglar-ui-route.js</li>
+<li>页面视图容器:ui-view=’viewName’</li>
+<li>config配置<ol>
+<li>$stateProvider<ol>
+<li>$stateProvider.state(‘stateName’,{route})</li>
+<li>route:{url:{‘viewName1’:{},’viewName2’:{}}}</li>
+<li>url    <ol>
+<li>参数传递:url/:id?name/{age}</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>$urlRouterProvider<ol>
+<li>$urlRouterProvider.otherwise(‘url’)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>路由访问<ol>
+<li>html访问:ui-sref=stateName({params:value}) </li>
+<li>js路由跳转:$state.go(stateName) </li>
+<li>获取路由参数:$stateParams      </li>
+</ol>
+</li>
+</ol>
+
       
 
       
@@ -210,7 +301,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Angular.js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Angular.js/" class="article-tag-list-link color1">Angular.js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -422,11 +535,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
              
               <li class="article-tag-list-item">

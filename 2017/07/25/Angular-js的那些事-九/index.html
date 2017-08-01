@@ -8,16 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Angular.js的那些事(九) | Scorpion&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="yangxiaoming的个人网站">
+  <meta name="description" content="Angular.js的那些事(九)">
+<meta name="keywords" content="Angular.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular.js的那些事(九)">
 <meta property="og:url" content="http://yoursite.com/2017/07/25/Angular-js的那些事-九/index.html">
 <meta property="og:site_name" content="Scorpion&#39;s Blog">
-<meta property="og:description" content="yangxiaoming的个人网站">
-<meta property="og:updated_time" content="2017-07-25T08:44:39.073Z">
+<meta property="og:description" content="Angular.js的那些事(九)">
+<meta property="og:updated_time" content="2017-08-01T07:42:12.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular.js的那些事(九)">
-<meta name="twitter:description" content="yangxiaoming的个人网站">
+<meta name="twitter:description" content="Angular.js的那些事(九)">
   
     <link rel="alternative" href="/atom.xml" title="Scorpion&#39;s Blog" type="application/atom+xml">
   
@@ -181,7 +182,145 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>Angular.js的那些事(九)<br><a id="more"></a></p>
+<h2 id="First-Step-指令"><a href="#First-Step-指令" class="headerlink" title="First Step 指令"></a>First Step 指令</h2><ol>
+<li>声明一个指令<ol>
+<li>app.directive(‘dircName’,[func(){}])</li>
+</ol>
+</li>
+<li><p>参数讲解:</p>
+<ol>
+<li>调用方式:restrict<ol>
+<li>E:标签</li>
+<li>A:属性/data属性</li>
+<li>C:类名</li>
+<li>M:注释<!--directive:dirname-->指令的replace参数设置为true</li>
+</ol>
+</li>
+<li>模板html:template<ol>
+<li>指令的模板html</li>
+</ol>
+</li>
+<li>模板url:templateUrl<ol>
+<li>模板链接</li>
+<li>模板缓存名<ol>
+<li>$templateCache.put(‘cacheName’,’template’)</li>
+</ol>
+</li>
+<li>模板script的id  </li>
+</ol>
+</li>
+<li>指令标签被替换:replace<ol>
+<li>true:指令标签会被替换掉,指令模板一定要有根元素</li>
+<li>false:默认值,指令标记会被保留</li>
+</ol>
+</li>
+<li>原有内容保留:transclude<ol>
+<li>true:原有内容被保留在模板页里面会有ng-transclude指令的元素中</li>
+<li>false:默认值,原有内容不被保存</li>
+</ol>
+</li>
+<li>link:主要用于元素的监听,监视模型属性的变化<ol>
+<li>link:func(scope,iEle,iAttr){}</li>
+<li>scope:指令被使用的作用域</li>
+<li>iEle:代表绑定指令的元素的包含元素</li>
+<li>iAttr:指令元素的所有属性集合</li>
+</ol>
+</li>
+<li><p>compile:主要用于在link函数运行前,进行dom转化</p>
+<ol>
+<li>tEle:指定绑定的元素</li>
+<li>attrs:指令元素上声明的属性<blockquote>
+<pre><code>      3. 
+compile:func(tEle,attrs){
+   return func(){
+       link函数
+       }
+  }   
+      4.
+ compile: function(tEle, attrs){
+            return {
+                // 预处理
+                pre: function(){
+
+                },
+                // link
+       post: function(scope,ele,attrs,ctrl){
+                    ctrl.title
+                }
+            }
+        }
+
+        app.controller(&apos;parentCtrl&apos;,function(){
+            this.title
+        })     
+</code></pre></blockquote>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<hr>
+<ol>
+<li>require:<ol>
+<li>‘faDir’:在当前元素查找</li>
+<li>‘^faDir’不仅在当前元素上查找，而且在父级及其父级以上里查找</li>
+<li>‘^^faDir’ 只在父级及其父级以上里查找</li>
+<li>‘?faDir’ 在当前元素中找，即使查找不到也不会报错</li>
+<li>‘?^faDir’ 不仅在当前元素上查找，而且在父级里查找，即使查找不到也不会报错</li>
+<li>‘?^^faDir’ 只在父级里查找，即使查找不到也不会报错</li>
+</ol>
+</li>
+<li>controller<ol>
+<li>用法1:使用scope对象绑定数据</li>
+<li>用法2:参数常见在父亲的指令中去<ol>
+<li>子指令require父亲的指令</li>
+<li>在子指令中,link必须要有第四个参数controller,才可以配合使用</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>参数：scope<ol>
+<li>false：默认值，不创建新的作用域</li>
+<li>true: 当 scope 设置为 true 时，会从父作用域继承并创建一个新的作用域对象</li>
+<li>json对象：隔离作用域<ol>
+<li>绑定策略<ol>
+<li>@Attr @通知<ol>
+<li>父scope更改影响子scope对象</li>
+<li>子scope对象不影响父scope</li>
+<li>子scope对象修改后一样会受父scope改变而改变<ol>
+<li>外部变量变化，username</li>
+<li>外部变量=&gt;绑定到指令元素的属性上： a-attr=”“<ol>
+<li>指令的属性=&gt;指令内部的变量上 scope:{usercons: ‘@aAttr’}</li>
+<li>影响到内部属性的变化</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>=Attr 互通<br>b1: 子scope和父scope互通的属性，任意一方修改都会影响到对方</li>
+<li>&amp;Attr 引用<br>c1: 可以在独立的子scope里直接调用父scope对象的方法</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>// 如何让指令和外部controller交互</p>
+<ol>
+<li>scope不定义或者scope:false。它是直接用的controller的scope</li>
+<li>scope:true。它是继承controller的scope。这时候，你要修改的内容最好定义为一个对象。</li>
+<li><p>scope：{key:’=key’}。它是独立出一个scope。修改方法同上，最好定义为对象<br>然后再讲一个。使用 iAttrs,将它定义给指令上的一个属性。</p>
+<pre><code>iElement.on(&apos;click&apos;, &apos;#addTaskClass&apos;, function(event) {
+    $scope.title = &quot;aaaaaa&quot;;
+    scope.$apply();
+}
+</code></pre></li>
+</ol>
+
       
 
       
@@ -210,7 +349,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Angular.js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Angular.js/" class="article-tag-list-link color1">Angular.js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -284,8 +445,8 @@
     </a>
   
   
-    <a href="/2017/07/25/Angular-js的那些事-八/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Angular.js的那些事(八)</div>
+    <a href="/2017/07/25/Angular-js的那些事-七/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Angular.js的那些事(七)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -422,11 +583,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
              
               <li class="article-tag-list-item">
