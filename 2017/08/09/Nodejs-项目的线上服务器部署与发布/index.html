@@ -6,17 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: webpack | Scorpion&#39;s Blog</title>
+  <title>Nodejs 项目的线上服务器部署与发布 | Scorpion&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="yangxiaoming的个人网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Scorpion&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/categories/webpack/index.html">
+  <meta name="description" content="记录自主搭建linux服务器的历程,node+mongoDB+nginx实现反向代理…">
+<meta name="keywords" content="Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nodejs 项目的线上服务器部署与发布">
+<meta property="og:url" content="http://yoursite.com/2017/08/09/Nodejs-项目的线上服务器部署与发布/index.html">
 <meta property="og:site_name" content="Scorpion&#39;s Blog">
-<meta property="og:description" content="yangxiaoming的个人网站">
+<meta property="og:description" content="记录自主搭建linux服务器的历程,node+mongoDB+nginx实现反向代理…">
+<meta property="og:image" content="http://i.imgur.com/lELg0NJ.png">
+<meta property="og:image" content="http://i.imgur.com/m3jQ7lG.png">
+<meta property="og:image" content="http://i.imgur.com/Pp6Xkal.png">
+<meta property="og:image" content="http://i.imgur.com/CEV6WNg.png">
+<meta property="og:image" content="http://i.imgur.com/Xo1fSDY.png">
+<meta property="og:image" content="http://i.imgur.com/EPgSh3E.png">
+<meta property="og:image" content="http://i.imgur.com/oaalzQ0.png">
+<meta property="og:image" content="http://i.imgur.com/OVHJn0B.png">
+<meta property="og:image" content="http://i.imgur.com/L7tCYN6.png">
+<meta property="og:image" content="http://i.imgur.com/0Gq7azK.png">
+<meta property="og:updated_time" content="2017-08-09T07:33:27.824Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Scorpion&#39;s Blog">
-<meta name="twitter:description" content="yangxiaoming的个人网站">
+<meta name="twitter:title" content="Nodejs 项目的线上服务器部署与发布">
+<meta name="twitter:description" content="记录自主搭建linux服务器的历程,node+mongoDB+nginx实现反向代理…">
+<meta name="twitter:image" content="http://i.imgur.com/lELg0NJ.png">
   
     <link rel="alternative" href="/atom.xml" title="Scorpion&#39;s Blog" type="application/atom+xml">
   
@@ -160,71 +173,354 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Nodejs-项目的线上服务器部署与发布" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/27/webpack历险记/" class="archive-article-date">
-  	<time datetime="2017-07-27T02:32:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/27/webpack历险记/">webpack历险记</a>
+    <h1 class="article-title" itemprop="name">
+      Nodejs 项目的线上服务器部署与发布
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/08/09/Nodejs-项目的线上服务器部署与发布/" class="archive-article-date">
+  	<time datetime="2017-08-09T01:34:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录自主搭建linux服务器的历程,node+mongoDB+nginx实现反向代理…<br><a id="more"></a></p>
+<h2 id="远程登录服务器"><a href="#远程登录服务器" class="headerlink" title="远程登录服务器"></a>远程登录服务器</h2><p>这里就直接从选购域名与备案跳过去了,服务器选用的阿里云,版本是<strong>Linux旗下的ubuntu14.04</strong>.</p>
+<ol>
+<li>服务器登录这里我们首选了Xshell作为远程的工具来连接</li>
+<li><p>输入公网IP和你设置的用户名,密码</p>
+<ol>
+<li>这里就已经登陆成功了</li>
+</ol>
+<p><img src="http://i.imgur.com/lELg0NJ.png" alt=""></p>
+</li>
+<li><p>接下来我们创建一个自己的用户,这里不能使用root超级用户,命令:<code>sudo adduser yang</code></p>
+<ol>
+<li>这里添加成功了,但是仍然是普通用户</li>
+</ol>
+<p><img src="http://i.imgur.com/m3jQ7lG.png" alt=""></p>
+</li>
+<li><p><code>gpasswd -a  yang sudo</code></p>
+</li>
+<li><code>sudo visudo</code><ol>
+<li>编辑文件修改如下,ctrl+x退出y确认 回车保存<br><img src="http://i.imgur.com/Pp6Xkal.png" alt=""></li>
+</ol>
+</li>
+<li>切换用户<code>su yang</code>,使用<code>sudo mkdir demo</code>创建文件夹成功了,证明权限给到了<h3 id="实现无密码登录"><a href="#实现无密码登录" class="headerlink" title="实现无密码登录"></a>实现无密码登录</h3><img src="http://i.imgur.com/CEV6WNg.png" alt=""></li>
+</ol>
+<p><img src="http://i.imgur.com/Xo1fSDY.png" alt=""></p>
+<p><img src="http://i.imgur.com/EPgSh3E.png" alt=""></p>
+<p><img src="http://i.imgur.com/oaalzQ0.png" alt=""></p>
+<h2 id="增强服务器安全性等级"><a href="#增强服务器安全性等级" class="headerlink" title="增强服务器安全性等级"></a>增强服务器安全性等级</h2><p>因为服务器默认的端口都是22,所以安全性比较差,这里进行修改端口号(1024-65536)</p>
+<ol>
+<li>首先进入root用户下<code>sudo vi /etc/ssh/sshd_config</code><ol>
+<li>这里进行修改</li>
+</ol>
+</li>
+</ol>
+<p><img src="http://i.imgur.com/OVHJn0B.png" alt=""><br><img src="http://i.imgur.com/L7tCYN6.png" alt=""></p>
+<ol>
+<li>保存后<code>sudo service ssh restart</code>重启<h3 id="配置iptables-防火墙"><a href="#配置iptables-防火墙" class="headerlink" title="配置iptables 防火墙"></a>配置iptables 防火墙</h3></li>
+<li>首先升级下<code>sudo apt-get update &amp;&amp; sudo apt-get upgrade</code></li>
+<li>清空iptables的默认规则 <code>sudo iptables -F</code></li>
+<li><p><code>sudo vi /etc/iptables.up.rules</code></p>
+<pre><code>*filter
+#allow all connection
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+#allow out traffic
+-A OUTPUT -j ACCEPT
+#alow http https
+-A INPUT -p tcp --dport 443 -j ACCEPT
+-A INPUT -p tcp --dport 80 -j ACCEPT
+#allow ssh port login
+-A INPUT -p tcp -m state --state NEW --dport 22 -j ACCEPT
+#ping
+-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
+#log
+-A INPUT -m limit --limit  5/min -j LOG --log-prefix &quot;iptables denied:&quot; --log-level 7
+# drop incoming sensitive connections
+-A INPUT -p tcp --dport 80 -i eth0 -m state --state NEW  -m recent --set
+-A INPUT -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --update --seconds 60 --hitcount 150 -j DROP
+#reject all other inbound
+-A INPUT -j REJECT
+-A FORWARD -j REJECT
+COMMIT
+</code></pre></li>
+<li>最后保存下<code>sudo iptables-restore &lt; /etc/iptables.up.rules</code></li>
+<li><code>sudo ufw status</code>查看防火墙激活状态 , <code>sudo ufw enable</code>输入y激活</li>
+<li><p>设置防火墙开机自启<code>sudo vi /etc/network/if-up.d/iptables</code></p>
+<pre><code>#!/bin/sh
+iptables-restore /etc/iptables.up.rules
+</code></pre></li>
+<li>给与权限 <code>sudo chmod +x /etc/network/if-up.d/iptables</code></li>
+</ol>
+<p>###Fail2Ban</p>
+<ol>
+<li>安装<code>sudo apt-get install fail2ban</code></li>
+<li>打开配置文件<code>sudo vi /etc/fail2ban/jail.conf</code><ol>
+<li>修改<code>destemail = yangxiaoming1924@gmail.com</code></li>
+<li><code>action = %(action_mw)s</code></li>
+<li><code>sudo service fail2ban status/start/stop</code><h2 id="安装node生产环境"><a href="#安装node生产环境" class="headerlink" title="安装node生产环境"></a>安装node生产环境</h2></li>
+</ol>
+</li>
+<li>稳妥起见先更新<code>sudo apt-get update</code></li>
+<li><code>sudo apt-get install vim openssl build-essential libssl-dev wget curl git</code></li>
+<li>去github搜索<a href="https://github.com/creationix/nvm" title="nvm" target="_blank" rel="external">https://github.com/creationix/nvm</a>找到wget命令<code>wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash</code>然后<strong>cd ~</strong></li>
+<li><code>nvm install v6.9.5</code>安装node<ol>
+<li>指定版本<code>nvm use v6.9.5</code></li>
+<li><code>nvm alias default v6.9.5</code> </li>
+<li>查看一下版本号<code>node -v</code></li>
+</ol>
+</li>
+<li>众所周知的原因要更改下载源 <code>npm --registry=https://registry.npm.taobao.org install -g npm</code></li>
+<li><code>echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf &amp;&amp; sudo sysctl -p</code></li>
+<li>安装cnpm<code>npm --registry=https://registry.npm.taobao.org install -g cnpm</code><ol>
+<li>如果npm安装不上 在用cnpm,安装后可以同步使用: <code>cnpm sync koa</code></li>
+</ol>
+</li>
+<li><p><code>npm i pm2 webpack gulp grunt-cli -g</code></p>
+<ol>
+<li><p>新建一个index.js 写入</p>
+<p>var http = require(‘http’);<br>http.createServer(function(req,res){</p>
+<pre><code>res.writeHead(200,{&apos;Content-Type&apos;:&apos;text/plain&apos;})
+res.end(&apos;come from yang&apos;);
+</code></pre><p>}).listen(8081);</p>
+<pre><code>console.log(&apos;server from http://39.108.10.88;8081&apos;);    
+</code></pre></li>
+<li><code>pm2 start index.js</code></li>
+</ol>
+<p><img src="http://i.imgur.com/0Gq7azK.png" alt=""><br>##配置Nginx实现反向代理80端口</p>
+</li>
+<li><code>sudo service apache2 stop</code></li>
+<li><code>sudo service apache stop</code></li>
+<li><code>update-rc.d -f apache2 remove</code></li>
+<li><code>sudo apt-get remove apache2</code></li>
+<li><code>sudo apt-get update</code></li>
+<li>安装nginx<code>sudo apt-get install nginx</code></li>
+<li><code>cd /etc/nginx/conf.d</code></li>
+<li><p>创建一个配置文件<code>sudo vi yangxiaoming-8081.conf</code>内容如下:</p>
+<pre><code>upstream  appname{
+        server 127.0.0.1:8081;
+}
+
+server{
+        listen 80;
+        server_name 39.108.10.88 ;
+
+        location /{
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+                proxy_set_header X-Nginx-Proxy true;
+
+                proxy_pass http://appname;
+                proxy_redirect off;
+
+        }
+}
+
+注意:这里的appname与 proxy_pass http://appname;这里的要一致.
+server_name XXXXXXXX 这里填写的是服务器的公网IP.
+</code></pre></li>
+<li><p>回退上层目录并查看文件内容 <code>cd .. &amp;&amp; sudo vi nginx.conf</code></p>
+</li>
+<li><code>sudo nginx -t</code>查看刚才配置的文件是否有问题</li>
+<li>重启下nginx <code>sudo nginx -s reload</code><ol>
+<li>如果想要在头部信息不显示nginx的版本号</li>
+<li>可以在nginx.conf中找到http中的server_token 删掉前面的#注释即可</li>
+<li>重启<code>sudo nginx -s reload</code> </li>
+<li>刷新网页 在头部信息中就没有了nginx的版本信息内容<br>##利用 DNSPod 管理域名解析</li>
+</ol>
+</li>
+<li>进入阿里云后台找到域名与网站(万网)下的域名点击管理<ol>
+<li>点击DNS修改/创建</li>
+</ol>
+</li>
+<li>域名解析 添加记录 <blockquote>
+<p>主机记录 www 记录类型 A 记录值是公网IP</p>
+</blockquote>
+</li>
+</ol>
+<ol>
+<li><p>修改DNS方式<a href="https://support.dnspod.cn/Kb/guide/" title="修改DNS的方法" target="_blank" rel="external">https://support.dnspod.cn/Kb/guide/</a></p>
+<h3 id="图片在线存储-七牛网"><a href="#图片在线存储-七牛网" class="headerlink" title="图片在线存储 七牛网"></a>图片在线存储 七牛网</h3><p>如果是微信小程序可以选择七牛<br>1.登陆进去 找到对象存储  融合 CDN 加速域名 添加<br>##服务器配置安装 MongoDB<br>最好是数据库跟文件单独放在两个服务器上面去,这里就先放在一起了</p>
+</li>
+<li><p>找到文档<a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/" target="_blank" rel="external">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/</a></p>
+</li>
+<li>按照步骤来,第二步要按照你自己的版本号来</li>
+<li><p>第四部分 <code>sudo vi /etc/apt/apt.conf</code>注释掉第一行阿里云的镜像下载地址</p>
+<ol>
+<li>这里如果觉得第四步下载太慢可以更换下载源</li>
+<li><code>sudo vi /etc/apt/sources.list.d/mongodb-org-3.4.list</code></li>
+<li><code>deb [ arch=amd64 ] http://mirrors.aliyun.com/mongodb/apt/ubuntu trusty/mongodb-org/3.4 multiverse</code></li>
+<li>然后<code>sudo apt-get update</code>更新一下</li>
+<li>最后再执行第四步<code>sudo apt-get install -y mongodb-org</code></li>
+<li><p>防火墙设置允许端口号27017访问<code>sudo vi /etc/iptables.up.rules</code>如下所示</p>
+<pre><code>#mongodb connect
+-A INPUT -s 127.0.0.1 -p tcp --destination-port 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
+-A OUTPUT -d 127.0.0.1 -p tcp --source-port 27017 -m state --state NEW,ESTABLISHED -j ACCEPT
+</code></pre></li>
+<li><p>启动服务<code>sudo service mongod start</code></p>
+</li>
+<li><code>mongo</code>启动成功!</li>
+<li>终止服务<code>sudo service mongod stop</code></li>
+</ol>
+</li>
+<li>如果想要修改mongodb的默认端口号的话,<code>sudo vi /etc/mongod.conf</code> 找到net下的port修改,并且防火墙的也需要更新</li>
+<li>连接的时候<code>mongo --port 端口号</code></li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/webpack/" class="article-tag-list-link color3">webpack</a>
+        			<a href="/categories/Node.js/" class="article-tag-list-link color3">Node.js</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/09/Nodejs-项目的线上服务器部署与发布/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/08/04/node学习记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">node学习记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="Nodejs-项目的线上服务器部署与发布" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -247,10 +543,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		root: "/",
 		innerArchive: true,

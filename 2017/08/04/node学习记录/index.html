@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: webpack | Scorpion&#39;s Blog</title>
+  <title>node学习记录 | Scorpion&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="yangxiaoming的个人网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Scorpion&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/categories/webpack/index.html">
+  <meta name="description" content="node学习记录">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node学习记录">
+<meta property="og:url" content="http://yoursite.com/2017/08/04/node学习记录/index.html">
 <meta property="og:site_name" content="Scorpion&#39;s Blog">
-<meta property="og:description" content="yangxiaoming的个人网站">
+<meta property="og:description" content="node学习记录">
+<meta property="og:updated_time" content="2017-08-07T03:45:59.498Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Scorpion&#39;s Blog">
-<meta name="twitter:description" content="yangxiaoming的个人网站">
+<meta name="twitter:title" content="node学习记录">
+<meta name="twitter:description" content="node学习记录">
   
     <link rel="alternative" href="/atom.xml" title="Scorpion&#39;s Blog" type="application/atom+xml">
   
@@ -160,71 +162,544 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-node学习记录" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/07/27/webpack历险记/" class="archive-article-date">
-  	<time datetime="2017-07-27T02:32:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/27/webpack历险记/">webpack历险记</a>
+    <h1 class="article-title" itemprop="name">
+      node学习记录
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/08/04/node学习记录/" class="archive-article-date">
+  	<time datetime="2017-08-04T07:52:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>node学习记录<br><a id="more"></a></p>
+<h2 id="First-Day"><a href="#First-Day" class="headerlink" title="First Day"></a>First Day</h2><h3 id="第一部分-环境安装"><a href="#第一部分-环境安装" class="headerlink" title="第一部分:环境安装"></a>第一部分:环境安装</h3><ol>
+<li>下载安装node.js<ol>
+<li><a href="http://www.nodejs.org/zh-cn/" target="_blank" rel="external">http://www.nodejs.org/zh-cn/</a></li>
+<li><a href="http://www.nodejs.org/en/" target="_blank" rel="external">http://www.nodejs.org/en/</a></li>
+<li>msi版本的用来安装</li>
+<li>tar.gz版本用来配置webstorm</li>
+</ol>
+</li>
+<li>了解npm包管理工具<ol>
+<li>查看安装包：<ol>
+<li>npm ls</li>
+<li>npm ls -g<br>C:\Users\Leslie\AppData\Roaming\npm\node_modules</li>
+</ol>
+</li>
+<li>npm初始化<ol>
+<li>npm init</li>
+<li>文件夹名字不可以包含大写字母</li>
+<li>文件夹名字不可有空格</li>
+</ol>
+</li>
+<li>下载bower包管理工具<ol>
+<li>npm install bower -g<br>npm i bower -g</li>
+</ol>
+</li>
+<li>特定版本<ol>
+<li>npm install body-parser@1.15.1</li>
+</ol>
+</li>
+<li>dev节点 devDependencies<ol>
+<li>npm install body-parser –save-dev</li>
+</ol>
+</li>
+<li>默认节点 dependencies(依赖)<ol>
+<li>npm install body-parser –save</li>
+</ol>
+</li>
+<li>批量拉包<ol>
+<li>npm install =&gt; dependencies和devDependences</li>
+<li>npm install –prod =&gt; dependencies</li>
+<li>npm install –only=dev =&gt;devDependencies</li>
+</ol>
+</li>
+<li>移除包（卸载包）<ol>
+<li>npm uninstall packageName 当前目录</li>
+<li>npm uninstall packageName -g 全局目录<h3 id="第二部分-Hello-World"><a href="#第二部分-Hello-World" class="headerlink" title="第二部分:Hello World"></a>第二部分:Hello World</h3></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>在cmd或者git bash里运行： node 01.js<ol>
+<li>如果被占用，则把代理清除<ol>
+<li>npm config set proxy null</li>
+</ol>
+</li>
+<li>通过npm下载框架express<h3 id="第三部分-基本组件console"><a href="#第三部分-基本组件console" class="headerlink" title="第三部分: 基本组件console"></a>第三部分: 基本组件console</h3></li>
+</ol>
+</li>
+<li>console.log(); 打印日志<ol>
+<li>生成日志信息文件<ol>
+<li>node demo.js&gt;demo.log</li>
+</ol>
+</li>
+<li>占位符<ol>
+<li>%d %s</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>console.info(); 打印信息</li>
+<li>console.warn(); 打印警告</li>
+<li>console.error(); 打印错误</li>
+<li>console.dir 打印信息类型</li>
+<li>console.time(‘tagName’); 开始计时</li>
+<li>console.timeEnd(“tagName”); 结束计时</li>
+<li>console.trace(); 跟踪函数执行过程</li>
+<li>console.assert(表达式); 断言<h3 id="第四部分-http"><a href="#第四部分-http" class="headerlink" title="第四部分: http"></a>第四部分: http</h3></li>
+<li>引入模块http<ol>
+<li>require(‘http’);</li>
+</ol>
+</li>
+<li>创建服务器：createServer<ol>
+<li>var server = http.createServer(function(req, res){})<pre><code>1. writeHead: 响应头
+2. res.writeHead=object;
+3. 200-配置
+   1. text/html: 以html形式返回
+   2. text/json: 以json格式返回
+   3. text/xml: 以xml格式返回
+   4. text/plain: 原样返回
+   5. charset=utf-8
+   6. &apos;txt&apos;: &apos;text/plain&apos;
+    1. &apos;html&apos;:&apos;text/html&apos;
+    2.     &apos;css&apos;:&apos;text/css&apos;
+    3.     &apos;xml&apos;:&apos;application/xml&apos;
+    4.    &apos;json&apos;:&apos;application/json&apos;
+    5.    &apos;js&apos;:&apos;application/javascript&apos;
+    6.    &apos;jpg&apos;:&apos;image/jpeg&apos;
+    7.   &apos;jpeg&apos;:&apos;image/jpeg&apos;
+    8.   &apos;gif&apos;:&apos;image/gif&apos;
+    9.   &apos;png&apos;:&apos;image/png&apos;
+    10.  &apos;svg&apos;:&apos;image/svg+xml&apos;
+4. 301-{&apos;Location&apos;:&apos;新地址&apos;}
+</code></pre></li>
+<li>监听： listen<ol>
+<li>server.listen(port, hostname, callback);<ol>
+<li>port: 监听端口</li>
+<li>hostname: 监听主机名</li>
+<li>callback: 回调函数<br>function(err){console.log(err);}<h3 id="第五部分-Events"><a href="#第五部分-Events" class="headerlink" title="第五部分: Events"></a>第五部分: Events</h3></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>引入模块events<ol>
+<li>var events=require(‘events’);</li>
+</ol>
+</li>
+<li>实例化事件对象<ol>
+<li>EventEmitter： 用于注册和处理事件</li>
+<li>var mmyevent = new events.EventEmitter();</li>
+</ol>
+</li>
+<li>监听: on<ol>
+<li>myevent.on(evtName, callback(data));</li>
+<li>evtName: 事件名称</li>
+<li>callack(data)：回掉函数</li>
+</ol>
+</li>
+<li>触发：emit<ol>
+<li>myevent.emit(evtName, data)</li>
+<li>evtName: 事件名称</li>
+<li>data: 传递数据</li>
+</ol>
+</li>
+<li>移除监听：removeListener<ol>
+<li>myevent.removeListener(evtName, functionName);</li>
+<li>evtName: 事件名称</li>
+<li>functionName: 事件处理函数名</li>
+</ol>
+</li>
+<li>移除事件所有监听：removeAllListeners<ol>
+<li>myevent.removeAllListeners(evtName)</li>
+<li>evtName：事件名称</li>
+</ol>
+</li>
+<li>获取监听数量: listenerCount<ol>
+<li>myevent.listenerCount(evtName)</li>
+<li>evtName：事件名称</li>
+</ol>
+</li>
+<li>设置最大监听数量：setMaxListeners<ol>
+<li>myevent.setMaxListeners(n)<h2 id="Second-Day"><a href="#Second-Day" class="headerlink" title="Second Day"></a>Second Day</h2>###第一部分：fs模块</li>
+</ol>
+</li>
+<li>引入fs模块<br> 1.1. require(‘fs);</li>
+<li>写文件<ol>
+<li>异步写：writeFile<ol>
+<li>fs.writeFile(path,data[,option],callback)</li>
+<li>path:文件路径</li>
+<li>data: 写的内容, string/buffer</li>
+<li>option: 配置参数：比如：{encoding: ‘utf-8’}</li>
+<li>callback(err): 回调函数</li>
+</ol>
+</li>
+<li>同步写：writeFileSync<ol>
+<li>fs.writeFileSync(path, data[,option])</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>追加内容<ol>
+<li>异步追加内容：appendFile<ol>
+<li>fs.appendFile(path,data[,option],callback)</li>
+</ol>
+</li>
+<li>同步追加内容：appendFileSync<ol>
+<li>fs.appendFileSync(path,data[,option])</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>创建文件夹<ol>
+<li>异步创建：mkdir<ol>
+<li>fs.mkdir(path, callback)</li>
+</ol>
+</li>
+<li>同步创建：mkdirSync<ol>
+<li>fs.mkdirSync(path)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>读文件<ol>
+<li>异步读取：readFile<ol>
+<li>fs.readFile(file[,option], callback)</li>
+<li>path: 文件路径</li>
+<li>option: ‘utf-8’ ‘binary’</li>
+<li>callback(err, data):读取的buffer</li>
+</ol>
+</li>
+<li>同步读取：readFileSync<ol>
+<li>fs.readFileSync(file[,option])</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>读文件夹<ol>
+<li>异步读取：readdir<ol>
+<li>fs.readdir(path,callback)</li>
+</ol>
+</li>
+<li>同步读取：readdirSync(path)<ol>
+<li>fs.readdirSync(path)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>判断文件/文件夹是否存在<ol>
+<li>异步判断：exists<ol>
+<li>fs.exists(path, callback)</li>
+<li>callback(res): 回调，res: true/false</li>
+</ol>
+</li>
+<li>同步判断：existsSync<ol>
+<li>fs.existsSync(path)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>删除文件/文件夹<ol>
+<li>删除文件：unlink/unlinkSync</li>
+<li>删除文件夹：rmdir/rmdirSync</li>
+</ol>
+</li>
+<li>更改文件/文件夹路径<ol>
+<li>异步：rename<ol>
+<li>fs.rename(oldpath, newpath, callback)</li>
+</ol>
+</li>
+<li>同步：renameSync<ol>
+<li>fs.renameSync(oldpath, newpath)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>监听文件夹<ol>
+<li>fs.watch(dirname, listener);</li>
+<li>dirname: 文件夹路径/文件路径</li>
+<li>listener(event, filename)</li>
+<li>event: ‘rename/change’</li>
+<li>filename: 改变的文件名</li>
+</ol>
+</li>
+<li>监听文件<ol>
+<li>fs.watchFile(filename, listener)</li>
+<li>filename: 文件路径</li>
+<li>listener(current, prev)</li>
+<li>current: 当前文件</li>
+<li>prev: 之前文件</li>
+<li>fs.unwatchFile(filename, listener)</li>
+</ol>
+</li>
+<li>其他<ol>
+<li>获取物理路径：realpath(path, callback(err, resolvePath))/realpathSync(path)</li>
+<li>获取文件信息：stat(path, callback(err, stat))</li>
+<li>打开文件：fs.open(path, flags, callback(err,fd))<ol>
+<li>flags:<blockquote>
+<pre><code> r    以读取模式打开文件。如果文件不存在抛出异常。
+r+   以读写模式打开文件。如果文件不存在抛出异常。
+rs   以同步的方式读取文件。
+rs+  以同步的方式读取和写入文件。
+w    以写入模式打开文件，如果文件不存在则创建。
+wx   类似 &apos;w&apos;，但是如果文件路径存在，则文件写入失败。
+w+   以读写模式打开文件，如果文件不存在则创建。
+wx+  类似 &apos;w+&apos;， 但是如果文件路径存在，则文件读写失败。
+a    以追加模式打开文件，如果文件不存在则创建。
+ax   类似 &apos;a&apos;， 但是如果文件路径存在，则文件追加失败。
+a+   以读取追加模式打开文件，如果文件不存在则创建。
+ax+  类似 &apos;a+&apos;， 但是如果文件路径存在，则文件读取&gt;追加失败。
+</code></pre></blockquote>
+</li>
+</ol>
+</li>
+<li>写文件：fs.write(fd, buffer, offset, length, position,callback(err, bytes))</li>
+<li>读文件：fs.read(fd, buffer, offset, length, position, callback(err, bytes))</li>
+<li>关闭文件：fs.close(fd,callback(err))<h2 id="Third-Day"><a href="#Third-Day" class="headerlink" title="Third Day"></a>Third Day</h2><h3 id="第一部分-express"><a href="#第一部分-express" class="headerlink" title="第一部分 express"></a>第一部分 express</h3></li>
+</ol>
+</li>
+<li>下载express <ol>
+<li>npm i –save express</li>
+</ol>
+</li>
+<li>引入express<ol>
+<li>require(‘express’)</li>
+<li>中间件 body-parser<ol>
+<li>用于处理参数</li>
+<li>body参数,querystring参数,params参数</li>
+<li>urlencoded({extended: false}), 不用querystring处理参数，用qs处理  </li>
+</ol>
+</li>
+</ol>
+</li>
+<li>请求<ol>
+<li>get</li>
+<li>post</li>
+<li>put</li>
+<li>delete</li>
+</ol>
+</li>
+<li>参数接受:<ol>
+<li>路由传参(/:)<ol>
+<li>path/:id path/2</li>
+<li>接受方式,req.params</li>
+</ol>
+</li>
+<li>body传参({})<ol>
+<li>path body:{id:2}</li>
+<li>接受方式 req.body</li>
+</ol>
+</li>
+<li>querystring参数(?)<ol>
+<li>path?id=2</li>
+<li>接受方式 req.query</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>静态资源文件<ol>
+<li>app.use(express.static(‘public’))</li>
+<li>可以多次调用</li>
+</ol>
+</li>
+<li>错误页面<ol>
+<li>app.use(func(req,resp){resp.send()})    </li>
+</ol>
+</li>
+<li>路由<ol>
+<li>route</li>
+</ol>
+</li>
+<li>模板<ol>
+<li>app.set(‘view engine’,’jade’)</li>
+<li>app.set(‘views’,’path’)<h3 id="第二部分-生成express应用"><a href="#第二部分-生成express应用" class="headerlink" title="第二部分 生成express应用"></a>第二部分 生成express应用</h3></li>
+</ol>
+</li>
+<li>命令行方式<ol>
+<li>安装<ol>
+<li>npm i –save express-generator</li>
+</ol>
+</li>
+<li>创建express应用 <ol>
+<li>express appName</li>
+</ol>
+</li>
+<li>安装项目依赖包<ol>
+<li>npm i </li>
+</ol>
+</li>
+<li>启动express应用<ol>
+<li>npm start          </li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/webpack/" class="article-tag-list-link color3">webpack</a>
+        			<a href="/categories/node/" class="article-tag-list-link color5">node</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/04/node学习记录/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/08/09/Nodejs-项目的线上服务器部署与发布/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Nodejs 项目的线上服务器部署与发布
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/07/27/webpack历险记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">webpack历险记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="node学习记录" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -247,10 +722,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		root: "/",
 		innerArchive: true,
