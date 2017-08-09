@@ -25,7 +25,10 @@
 <meta property="og:image" content="http://i.imgur.com/OVHJn0B.png">
 <meta property="og:image" content="http://i.imgur.com/L7tCYN6.png">
 <meta property="og:image" content="http://i.imgur.com/0Gq7azK.png">
-<meta property="og:updated_time" content="2017-08-09T07:33:27.824Z">
+<meta property="og:image" content="http://i.imgur.com/hvxk0yO.png">
+<meta property="og:image" content="http://i.imgur.com/QAevN38.png">
+<meta property="og:image" content="http://i.imgur.com/bn2jICh.png">
+<meta property="og:updated_time" content="2017-08-09T09:57:07.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs 项目的线上服务器部署与发布">
 <meta name="twitter:description" content="记录自主搭建linux服务器的历程,node+mongoDB+nginx实现反向代理…">
@@ -376,8 +379,53 @@ server_name XXXXXXXX 这里填写的是服务器的公网IP.
 </ol>
 </li>
 <li>如果想要修改mongodb的默认端口号的话,<code>sudo vi /etc/mongod.conf</code> 找到net下的port修改,并且防火墙的也需要更新</li>
-<li>连接的时候<code>mongo --port 端口号</code></li>
+<li>连接的时候<code>mongo --port 端口号</code><br>###本地文件备份并上传</li>
+<li>本地终端执行<code>mongodump -h 127.0.0.1:27017 -d 数据库名 -o 打包后的文件夹名称</code></li>
+<li>打压缩包<code>tar zcvf 打包之后的名字.tar.gz 打包的源文件名称</code></li>
+<li><code>scp -P 服务器端口号 当前打压缩包的路径/打包之后的名字.tar.gz yang@服务器地址:/home/yang/demo</code></li>
+<li>此时打开服务器终端 对tar包解压缩<code>tar xvf tar包名字</code></li>
+<li><code>mongorestore --host 127.0.0.1:端口号 -d 导入的数据库名称 导入文件所在的位置</code><br>#####单表导入</li>
+<li>本地终端执行 <code>mongoexport  -d 数据库名 -c 表名  -q &#39;{条件}&#39; -o 导出的文件位置/文件名</code></li>
+<li>服务器终端执行<code>mongoimport --host 127.0.0.1:服务器的mongo端口号 -d 数据库名 -c 表名 导入的文件位置/文件名</code></li>
+<li>如果想要删除数据库的话,可以执行 <code>mongo --host 127.0.0.1:端口号 数据库名称 --eval &quot;db.dropDatabase()&quot;</code><br>###mongodb安全性</li>
 </ol>
+<blockquote>
+<p>先进入admin数据库添加用户 在切换到指定数据库添加用户</p>
+</blockquote>
+<ol>
+<li><code>use admin</code></li>
+<li><code>db.createUser({user:&#39;admin_yang&#39;,pwd:&#39;yt886627.&#39;,roles:[{role:&#39;userAdminAnyDatabase&#39;,db:&#39;admin&#39;}]})</code></li>
+<li>授权<code>db.auth(&#39;admin_yang&#39;,&#39;yt886627.&#39;)</code></li>
+<li>选择需要授权操作的数据库<code>use 数据库名</code></li>
+<li>添加指定数据库的读写操作用户<code>db.createUser({user:&#39;test_user&#39;,pwd:&#39;yt886627.&#39;,roles:[{role:&#39;readWrite&#39;,db:&#39;test&#39;}]})</code></li>
+<li>添加一个只读的备份用户<code>db.createUser({user:&#39;test_backup&#39;,pwd:&#39;Backup*2017&#39;,roles:[{role:&#39;read&#39;,db:&#39;test&#39;}]})</code></li>
+<li>此时还咩有生效,我们要进入到<code>sudo vi /etc/mongod.conf</code></li>
+<li>找到security,解开注释,添加<code>authorization:&#39;enabled&#39;</code></li>
+<li>重启mongo<code>sudo service mongod restart</code></li>
+<li>然后进入<code>mongo</code>,发现进不去了</li>
+<li><code>use admin</code></li>
+<li><code>db.auth(&#39;admin_yang&#39;,&#39;*****&#39;)</code>,此时再次<code>show dbs</code>就正常显示了.</li>
+<li><p>如果想要直接进入某个数据库</p>
+<ol>
+<li><code>mongo 127.0.0.1:端口号/数据库名称 -u 用户名 -p 密码</code></li>
+<li><code>show tables</code><br>###定期备份数据库<blockquote>
+<p>首先创建一个文件夹tasks</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>进入目录 <code>vi testdb.backup.sh</code></p>
+</li>
+<li>新建一个目录叫<code>mkdir backup</code></li>
+</ol>
+<p><img src="http://i.imgur.com/hvxk0yO.png" alt=""></p>
+<p><img src="http://i.imgur.com/QAevN38.png" alt=""></p>
+<ol>
+<li><code>cd backup &amp;&amp; mkdir testdb</code></li>
+<li>最后开启定时任务 <code>cd ~</code></li>
+<li><code>crontab -e</code></li>
+</ol>
+<p><img src="http://i.imgur.com/bn2jICh.png" alt=""></p>
 
       
 
@@ -616,7 +664,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,7 +672,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Oracle</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,7 +684,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color2">Oracle</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -644,19 +692,19 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
