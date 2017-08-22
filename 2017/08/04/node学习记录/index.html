@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/04/node学习记录/index.html">
 <meta property="og:site_name" content="Scorpion&#39;s Blog">
 <meta property="og:description" content="node学习记录">
-<meta property="og:updated_time" content="2017-08-07T03:45:59.498Z">
+<meta property="og:updated_time" content="2017-08-22T09:21:23.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node学习记录">
 <meta name="twitter:description" content="node学习记录">
@@ -542,8 +542,110 @@ ax+  类似 &apos;a+&apos;， 但是如果文件路径存在，则文件读取&g
 </ol>
 </li>
 <li>启动express应用<ol>
-<li>npm start          </li>
+<li>npm start   <h3 id="第三部分-express项目搭建"><a href="#第三部分-express项目搭建" class="headerlink" title="第三部分 express项目搭建"></a>第三部分 express项目搭建</h3></li>
 </ol>
+</li>
+</ol>
+</li>
+<li>安装<ol>
+<li>安装express 全局安装 -g<ol>
+<li>npm i -g express</li>
+</ol>
+</li>
+<li>安装express-generator 全局安装 -g</li>
+<li>创建express项目<ol>
+<li>express AppName //默认是生成jade模板的</li>
+<li>express -e EjsAppName //生成ejs引擎的命令</li>
+</ol>
+</li>
+<li>安装依赖项<ol>
+<li>进入项目目录 cd AppName &amp;&amp; npm i </li>
+</ol>
+</li>
+<li>运行app<ol>
+<li>node ./bin/www   </li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="Forth-Day"><a href="#Forth-Day" class="headerlink" title="Forth Day"></a>Forth Day</h2><h3 id="第一部分-安装mongodb"><a href="#第一部分-安装mongodb" class="headerlink" title="第一部分 安装mongodb"></a>第一部分 安装mongodb</h3><ol>
+<li>下载安装mongodb<ol>
+<li><a href="https://www.mongodb.com/download-center#community" target="_blank" rel="external">https://www.mongodb.com/download-center#community</a></li>
+</ol>
+</li>
+<li>配置数据目录<pre><code>01. 创建数据目录：mkdir c:\data
+02. 自定义数据目录：mongod --dbpath &quot;c:\data&quot;
+</code></pre></li>
+<li>添加/删除windows服务里面<pre><code>01. 添加服务
+    001. mongod.exe
+    002. 设置数据存放路径：--dbpath &quot;c:\data\db&quot;
+    003. 设置日志存放路径：--logpath &quot;c:\data\log\log.txt&quot;
+    004. 设置日志的记录方式：--logappend
+    005. 设置数据库的端口号：--port 27000
+    006. 设置服务的名称：--serviceName &quot;Name&quot;
+    007. 设置服务的显示名称：--serviceDisplayName &quot;DisplayName&quot;
+    008. 添加到windows服务里：--install
+    009. mongod --dbpath &quot;d:\data\db&quot; --logpath &quot;d:\data\log\log.txt&quot; -logappend --serviceName &quot;MongoDB&quot; --install
+02. 移除服务
+    001. mongod.exe --remove --serviceName &quot;Name&quot;
+03. 启动/停止服务
+    001. net start ServiceName
+    002. net stop ServicceName
+</code></pre></li>
+<li>MongoDB基本命令<pre><code>01. mongo --port 27017
+02. 显示全部的数据库：show dbs
+03. 切换数据库 use dbname
+04. show tables
+05. 创建数据库 use newdb
+</code></pre></li>
+<li>增删改查<pre><code>01. db.tableName.insert(obj)
+02. db.tableName.find(obj)
+03. db.tableName.findOne(obj)
+04. db.tableName.remove(obj,isFirst)
+    001. 参数1：删除条件
+    002. 参数2：是否只删除匹配到的第一条数据
+05. db.tableName.drop()
+06. db.dropDatabase()
+07. db.tableName.update({},{},false,true)
+    001. 参数1：条件，
+    002. 参数2：替换，如果{$set:{y:100,x:10}}
+    003. 参数3：不存在是否创建：true：是，false，不创建
+    004. 参数4：是否更新全部符合条件数据：true：是，false：只更新第一条
+    005. 更新单条记录: db.tableName.update(condition, newObj, false, false)
+    006. 更新多条记录: db.tableName.update(condition, {$set:newObj}, false, true)
+</code></pre></li>
+</ol>
+<ol>
+<li><p>mongodb中间件</p>
+<pre><code>01. 引入：mongoose
+02. 连接数据库:mongoose.connect(&apos;mongodb://127.0.0.1/mydb&apos;,function(err){})
+03. Schema = mongoose.Schema; //一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力
+04. User=new Schema(obj)
+05. 方法：
+    001. create(model,function(err){}) //由Schema发布生成的模型，具有抽象属性和行为的数据库操作对
+    002. find(model,fields,sort,function(err,docs){})
+    003. findOne(model,fields,function(err,docs){})
+    004. findById(model,fields,function(err,docs){})
+    005. update(model,newfields,options,function(err){})
+        0001. options:{multi: true,overwrite:true}
+            00001. multi:多条记录更改
+
+    006. remove(model,function(err){})
+</code></pre></li>
+<li><p>备份还原数据库</p>
+<ol>
+<li><p>backup<br>mongodump -h dbhost -d dbname -o dbdirectory</p>
+<p>-h：MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017</p>
+<p>-d：需要备份的数据库实例，例如：test</p>
+<p>-o：备份的数据存放位置，例如：c:\data\dump，当然该目录需要提前建立，在备份完成后，系统自动在dump目录下建立一个test目录，这个目录里面存放该数据库实例的备份数据。</p>
+<p>mongodump -h 127.0.0.1:27017 -d test-o d:\data\bak</p>
+</li>
+<li><p>restore<br>mongorestore -h dbhost -d dbname dbdirectory<br>-h：MongoDB所在服务器地址</p>
+<p>-d：需要恢复的数据库实例，例如：test，当然这个名称也可以和备份时候的不一样，比如test2</p>
+<p>dbdirectory备份数据所在位置，例如：c:\data\dump\test，这里要多加一个test，而不是备份时候的dump</p>
+<p>–drop：恢复的时候，先删除当前数据，然后恢复备份的数据。就是说，恢复后，备份后添加修改的数据都会被删除，慎用哦！</p>
+<p>mongorestore -h 127.0.0.1:27017 -d test22 d:\data\bak\test</p>
 </li>
 </ol>
 </li>
@@ -795,6 +897,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Jade</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
@@ -811,15 +917,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Oracle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -827,15 +929,23 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">微信</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
             
             <div class="clearfix"></div>

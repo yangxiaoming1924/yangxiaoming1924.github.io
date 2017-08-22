@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://i.imgur.com/hvxk0yO.png">
 <meta property="og:image" content="http://i.imgur.com/QAevN38.png">
 <meta property="og:image" content="http://i.imgur.com/bn2jICh.png">
-<meta property="og:updated_time" content="2017-08-09T09:57:07.379Z">
+<meta property="og:updated_time" content="2017-08-10T05:42:12.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nodejs 项目的线上服务器部署与发布">
 <meta name="twitter:description" content="记录自主搭建linux服务器的历程,node+mongoDB+nginx实现反向代理…">
@@ -426,6 +426,24 @@ server_name XXXXXXXX 这里填写的是服务器的公网IP.
 <li><code>crontab -e</code></li>
 </ol>
 <p><img src="http://i.imgur.com/bn2jICh.png" alt=""></p>
+<ol>
+<li><p>如果想安装其他数据库比如mySQL,<code>sudo apt-get install mysql-server mysql-client</code> 即可<br>##服务器上传Node项目</p>
+<blockquote>
+<p>首先是利用git上传到托管平台GitHub或者码云上面去,通过上传本机电脑的公钥到码云上面去建立联系</p>
+</blockquote>
+</li>
+<li><p>在码云上面建立一个仓库repositoryName</p>
+</li>
+<li>本地建立同名文件夹repositoryName,把上传的东西扔进去</li>
+<li>执行 <code>git init</code></li>
+<li><code>git add .</code></li>
+<li><code>git commit -m &#39;First commit&#39;</code></li>
+<li><code>git remote add origin ssh地址</code></li>
+<li>如果失败,就需要更新<code>git fetch</code></li>
+<li>然后在执行<code>git merge origin/master</code>进行合并</li>
+<li><code>git push -u origin master</code></li>
+<li>服务器同理<br>export NVM_DIR=”$HOME/.nvm”<br>[ -s “$NVM_DIR/nvm.sh” ] &amp;&amp; . “$NVM_DIR/nvm.sh”</li>
+</ol>
 
       
 
@@ -540,6 +558,15 @@ server_name XXXXXXXX 这里填写的是服务器的公网IP.
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/08/10/微信公众号开发/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          微信公众号开发
+        
+      </div>
+    </a>
   
   
     <a href="/2017/08/04/node学习记录/" id="article-nav-older" class="article-nav-link-wrap">
@@ -664,6 +691,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Jade</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
@@ -680,15 +711,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Oracle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -696,15 +723,23 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">微信</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
             
             <div class="clearfix"></div>

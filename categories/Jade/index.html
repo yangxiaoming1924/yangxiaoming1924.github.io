@@ -6,19 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Angular.js的那些事(一) | Scorpion&#39;s Blog</title>
+  <title>Category: Jade | Scorpion&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Angular.js的那些事(一)">
-<meta name="keywords" content="Angular.js">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Angular.js的那些事(一)">
-<meta property="og:url" content="http://yoursite.com/2017/07/25/Angular-js的那些事-一/index.html">
+  <meta name="description" content="yangxiaoming的个人网站">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Scorpion&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/categories/Jade/index.html">
 <meta property="og:site_name" content="Scorpion&#39;s Blog">
-<meta property="og:description" content="Angular.js的那些事(一)">
-<meta property="og:updated_time" content="2017-07-25T08:40:49.493Z">
+<meta property="og:description" content="yangxiaoming的个人网站">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angular.js的那些事(一)">
-<meta name="twitter:description" content="Angular.js的那些事(一)">
+<meta name="twitter:title" content="Scorpion&#39;s Blog">
+<meta name="twitter:description" content="yangxiaoming的个人网站">
   
     <link rel="alternative" href="/atom.xml" title="Scorpion&#39;s Blog" type="application/atom+xml">
   
@@ -162,252 +160,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Angular-js的那些事-一" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Angular.js的那些事(一)
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/08/22/Jade的简易教程/" class="archive-article-date">
+  	<time datetime="2017-08-22T09:22:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/08/22/Jade的简易教程/">Jade的简易教程</a>
     </h1>
   
 
-        
-        <a href="/2017/07/25/Angular-js的那些事-一/" class="archive-article-date">
-  	<time datetime="2017-07-25T07:59:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Angular.js的那些事(一)<br><a id="more"></a></p>
-<h2 id="First-Step"><a href="#First-Step" class="headerlink" title="First Step"></a>First Step</h2><ol>
-<li>安装nodejs 集成npm<ol>
-<li>初始化npm:<code>npm init</code> 会生成package.json文件</li>
-<li>(ps:npm v-5.0以后会多生成一个package-lock.json)</li>
-<li>检测node版本: <code>node -v</code> npm版本: <code>npm -v</code>    </li>
-</ol>
-</li>
-<li>安装bower <ol>
-<li>全局安装:<code>npm i bower -g</code></li>
-<li>检测版本: <code>bower -v</code></li>
-<li>初始化bower:<code>bower init</code> 会生成一个bower.json文件</li>
-<li>配置依赖项安装路径:<ol>
-<li>新建文件:<code>.bowerrc</code></li>
-<li>文件内容为json对象格式:<code>&quot;directory&quot;:&quot;./static/components&quot;</code></li>
-</ol>
-</li>
-</ol>
-</li>
-<li>下载安装Angular.js<ol>
-<li><code>bower i angular --save</code></li>
-<li><code>bower i angular#版本号 --save</code></li>
-</ol>
-</li>
-<li>页面导入Angular.js文件<h2 id="Second-Step"><a href="#Second-Step" class="headerlink" title="Second Step"></a>Second Step</h2></li>
-<li>Hello,Angular.js<ol>
-<li>声明作用域:<code>ng-app</code>,一个页面只能有一个</li>
-<li>绑定数据:<code>Hello,Angular.js</code></li>
-<li>花括号为Angular.js的默认写法,里面可以放数值,变量,运算符</li>
-</ol>
-</li>
-<li>简单的运算<ol>
-<li><code>3</code></li>
-<li>过滤器初见:<code>|number:0</code><ol>
-<li>写法:数据后面写<code>|过滤器名字:参数</code></li>
-<li>功能:对数据进行特定的过滤格式化  </li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>指令:对于指令，可以把他简单的理解成特定DOM元素上运行的函数，指令可以扩展这个元素的功能。</p>
-<ol>
-<li><code>ng-init=&quot;a=10;b=100;c={}&quot;</code>:负责初始化数据</li>
-<li><code>ng-model</code>:数据双向绑定<ol>
-<li>前台输入的值会即使响应给后台</li>
-<li>后台数据的实时变化又会影响前台显示</li>
-</ol>
-</li>
-<li><code>ng-bind</code>:数据单项绑定,展示用.<code>Ex:Angular.js的那些事(一)  &lt;span ng-bind=title&gt;&lt;/span&gt;</code></li>
-<li><code>ng-repeat</code>:循环数据<ol>
-<li><code>item in itemList</code></li>
-<li><code>(key,value) in itemList</code><ol>
-<li>循环内容为实体里面的字段key为字段名,value为字段值</li>
-</ol>
-</li>
-<li>内置的变量<ol>
-<li><code>$index</code>:下标</li>
-<li><code>$first</code>:第一项</li>
-<li><code>$last</code>:最后一项</li>
-<li><code>middle</code>:中间项</li>
-<li><code>$odd</code>:奇数项</li>
-<li><code>$even</code>:偶数项</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><code>ng-class</code>:Angular的样式类<ol>
-<li>直接放置<code>ng-class=&quot;bg-danger&quot;</code>等同于<code>class=&quot;bg-danger&quot;</code> </li>
-<li>判断添加样式:<code>ng-class={&#39;bg-danger&#39;:&#39;true&#39;,&#39;bg-info&#39;:false}</code></li>
-<li>放置数组:<code>ng-class=[&quot;btn&quot;,&quot;btn-danger&quot;]</code></li>
-</ol>
-</li>
-<li><p><code>ng-click</code>事件</p>
-<ol>
-<li>相当于<code>onclick</code></li>
-<li>绑定<code>controller里面的操作函数或者变量</code> <h2 id="Third-Step"><a href="#Third-Step" class="headerlink" title="Third Step"></a>Third Step</h2><h3 id="Controller与-scope"><a href="#Controller与-scope" class="headerlink" title="Controller与$scope"></a>Controller与$scope</h3>ng-app=”myApp”<br>var app = angluar.module(‘myApp’,[]);<br>app.controller(‘控制器名称’,[‘$scope’,function(){</li>
-</ol>
-<p>}]); </p>
-<h4 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h4></li>
-</ol>
-</li>
-<li>控制器在AngularJS中的作用是增强视图。</li>
-<li>控制器是一个函数，用来向视图的作用域中添加额外的功能。我们用它来给作用域对象设置初始状态，并添加自定义行为。</li>
-<li>当我们在页面上创建一个新的控制器时，AngularJS会生成并传递一个新的 $scope 给这个控制器。可以在这个控制器里初始化 $scope 。由于AngularJS会负责处理控制器的实例化过程，我们只需编写构造函数即可。</li>
-</ol>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Angular.js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Jade</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Jade/" class="article-tag-list-link color5">Jade</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-      
 
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/25/Angular-js的那些事-一/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/07/25/Angular-js的那些事-二/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Angular.js的那些事(二)
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/07/25/IIS服务器的那些事/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">IIS服务器的那些事</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="Angular-js的那些事-一" ></div> 
-<script type="text/javascript"> 
-(function(){ 
-var appid = "true"; 
-var conf = "true"; 
-var width = window.innerWidth || document.documentElement.clientWidth; 
-if (width < 960) { 
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-  
-
-  
+    
 
 
           </div>
@@ -430,10 +247,10 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
-		isCategory: false,
+		isCategory: true,
 		open_in_new: false,
 		root: "/",
 		innerArchive: true,
